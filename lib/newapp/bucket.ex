@@ -5,7 +5,7 @@ defmodule NEWAPP.Bucket do
   Start a new Bucket.
   """
 
-  def start_link(_opts) do
+  def create(_opts \\ nil) do
     Agent.start_link(fn -> %{} end)
   end
 
@@ -14,6 +14,10 @@ defmodule NEWAPP.Bucket do
   """
   def get(bucket_pid, key) do
     Agent.get(bucket_pid, fn map -> Map.get(map, key) end)
+  end
+
+  def get_whole_bucket(bucket) do
+    Agent.get(bucket, fn map -> map end)
   end
 
 #  def getState(bucket_pid, key) do
