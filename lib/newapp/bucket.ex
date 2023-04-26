@@ -5,8 +5,8 @@ defmodule NEWAPP.Bucket do
   Start a new Bucket.
   """
 
-  def create(_opts \\ nil) do
-    Agent.start_link(fn -> %{} end)
+  def start_link(name, _opts \\ nil) do
+    Agent.start_link(fn -> %{} end, name: name)
   end
 
   @doc """
