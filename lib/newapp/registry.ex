@@ -1,4 +1,4 @@
-defmodule Registry do
+defmodule NEWAPP.Registry do
   use GenServer
 
   ## Client API
@@ -9,7 +9,7 @@ defmodule Registry do
     GenServer.start_link(__MODULE__, :ok, opts)
   end
 
-  def look_up(server, name) do
+  def lookup(server, name) do
     GenServer.call(server, {:lookup, name})
   end
 
@@ -33,7 +33,7 @@ defmodule Registry do
     if Map.has_key?(names, name) do
       {:noreply, names}
     else
-      {:ok, bucket} = NEWAPP.Bucket.create([])
+      {:ok, bucket} = NEWAPP.Bucket.start_link([])
       {:noreply, Map.put(names, name, bucket)}
     end
   end
